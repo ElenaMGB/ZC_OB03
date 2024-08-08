@@ -1,4 +1,6 @@
 # ЗООПАРК
+import pickle
+
 class Animal:
   def __init__(self, name, age, food):
       self.name = name
@@ -106,10 +108,22 @@ class Zoo:
       print("\nСотрудники зоопарка:")
       for employee in self.employees:
           employee.work()
+# Модуль работы с файлами
+  def save_to_file(self, filename):
+    with open(filename, 'wb') as file:
+      pickle.dump(self, file)
+    print(f"Данные зоопарка сохранены в файл {filename}")
+
+  @staticmethod
+  def load_from_file(filename):
+    with open(filename, 'rb') as file:
+      zoo = pickle.load(file)
+    print(f"Данные зоопарка загружены из файла {filename}")
+    return zoo
 
     # Создаем объекты сотрудников
 employee1 = Employee("Иван", "Охранник")
-employee2 = Employee("Анна", "Ученый")
+employee2 = Employee("Анна", "Научный сотрудник")
 zookeeper = ZooKeeper("Олег")
 veterinarian = Veterinarian("Ольга")
 
@@ -135,3 +149,13 @@ zoo.show_employees()
 # Демонстрация специфических методов сотрудников
 zookeeper.feed_animal(mammal1)
 veterinarian.heal_animal(reptile2)
+
+# Сохранение состояния зоопарка в файл
+zoo.save_to_file('zoo_data.pkl')
+
+# Загрузка состояния зоопарка из файла
+loaded_zoo = Zoo.load_from_file('zoo_data.pkl')
+
+loaded_zoo.show_animals()
+loaded_zoo.show_employees()
+
