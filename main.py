@@ -164,13 +164,13 @@ class Zoo:
     def save_to_json(self, filename):
         with open(filename, 'w', encoding='utf-8') as file:
             json.dump(self.to_dict(), file, ensure_ascii=False, indent=4)
-        print(f"\nДанные зоопарка сохранены в JSON файл {filename}")
+        print(f"Данные зоопарка сохранены в JSON файл {filename}")
 
     @staticmethod
     def load_from_json(filename):
         with open(filename, 'r', encoding='utf-8') as file:
             data = json.load(file)
-        print(f"\nДанные зоопарка загружены из JSON файла {filename}")
+        print(f"Данные зоопарка загружены из JSON файла {filename}")
         return Zoo.from_dict(data)
 
 # Пример использования
@@ -189,7 +189,7 @@ reptile1 = Reptile("Gena", 10, "Дракон", "мясо", "шипит")
 reptile2 = Reptile("Vasya", 5, "Ящерица", "муравьи", "молчит")
 bird1 = Bird("Чижик", 3, "Лес", "зерна")
 
-# Создаем зоопарк и добавляем животных и сотрудников
+Создаем зоопарк и добавляем животных и сотрудников
 zoo = Zoo("Наш зоопарк")
 
 zoo.add_animal(mammal1)
